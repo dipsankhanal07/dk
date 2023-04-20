@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Name</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Name is:</h1>
+    <p id="nameDisplay"></p>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    var name = localStorage.getItem("name");
+    document.getElementById("nameDisplay").innerHTML = name;
+  </script>
+</body>
+</html>

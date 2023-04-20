@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+  <title>Enter Your Name</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Welcome!</h1>
-	<p>Please enter your name:</p>
-	<input type="text" id="nameInput">
-	<button onclick="greet()">Submit</button>
-	<p id="greeting"></p>
+  <div class="container">
+    <h1>Welcome!</h1>
+    <p>Please enter your name:</p>
+    <input type="text" id="nameInput">
+    <button onclick="submitName()">Submit</button>
+  </div>
 
-	<script>
-		function greet() {
-			var name = document.getElementById("nameInput").value;
-			document.getElementById("greeting").innerHTML = "Hello, " + name + "!";
-		}
-	</script>
+  <script src="script.js"></script>
 </body>
 </html>
