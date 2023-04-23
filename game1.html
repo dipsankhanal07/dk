@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guessing Game</title>
+  </head>
+  <body>
+    <h1>Guessing Game</h1>
+  
+    <input type="text" id="guess" />
+    <button onclick="checkGuess()">Guess</button>
+    <p id="result"></p>
+
+    <script>
+      let randomNumber = Math.floor(Math.random() * 100) + 1;
+      let guesses = 5;
+
+      function checkGuess() {
+        let guess = parseInt(document.getElementById("guess").value);
+        if (guess === randomNumber) {
+          document.getElementById("result").innerHTML = "Congratulations! You guessed the number!";
+          document.getElementById("guess").disabled = true;
+        } else {
+          guesses--;
+          if (guesses === 0) {
+            document.getElementById("result").innerHTML = "Game over. The number was " + randomNumber + ".";
+            document.getElementById("guess").disabled = true;
+          } else {
+            if (guess < randomNumber) {
+              document.getElementById("result").innerHTML = "Higher. You have " + guesses + " guesses remaining.";
+            } else {
+              document.getElementById("result").innerHTML = "Lower. You have " + guesses + " guesses remaining.";
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

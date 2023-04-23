@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 300px;
+        height: 300px;
+        margin: auto;
+      }
+
+      td {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 48px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      td:hover {
+        background-color: #f2f2f2;
+      }
+
+      .winner {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+    <table>
+      <tr>
+        <td id="cell00" onclick="placeMark(0, 0)"></td>
+        <td id="cell01" onclick="placeMark(0, 1)"></td>
+        <td id="cell02" onclick="placeMark(0, 2)"></td>
+      </tr>
+      <tr>
+        <td id="cell10" onclick="placeMark(1, 0)"></td>
+        <td id="cell11" onclick="placeMark(1, 1)"></td>
+        <td id="cell12" onclick="placeMark(1, 2)"></td>
+      </tr>
+      <tr>
+        <td id="cell20" onclick="placeMark(2, 0)"></td>
+        <td id="cell21" onclick="placeMark(2, 1)"></td>
+        <td id="cell22" onclick="placeMark(2, 2)"></td>
+      </tr>
+    </table>
+    <p id="result"></p>
+
+    <script>
+      let currentPlayer = "X";
+      let board = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+      ];
+
+      function placeMark(row, col) {
+        let cell = document.getElementById("cell" + row + col);
+        if (cell.innerHTML !== "") {
+          return;
+        }
+        cell.innerHTML = currentPlayer;
+        board[row][col] = currentPlayer;
+        if (checkWin(currentPlayer)) {
+          document.getElementById("result").innerHTML = "Player " + currentPlayer + " wins!";
+          highlightWinningCells(currentPlayer);
+          disableBoard();
+        } else if (checkTie()) {
+          document.getElementById("result").innerHTML = "It's a tie!";
+          disableBoard();
+        } else {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+      }
+
+      function checkWin(mark) {
+        for (let i = 0; i < 3; i++) {
+          if (board[i][0] === mark && board[i][1] === mark && board[i][2] === mark) {
+            return true;
+          }
+          if (board[0][i] === mark && board[1][i] === mark && board[2][i] === mark) {
+            return true;
+          }
+        }
+        if (board[0][0] === mark && board[1][1] === mark && board[2][2] ===mark) {
+            return true;
+}
+if (board[0][2] === mark && board[1][1] === mark && board[2][0] === mark) {
+return true;
+}
+return false;
+}
+function checkTie() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (board[i][j] === "") {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  function highlightWinningCells(mark) {
+    for (let i = 0; i < 3; i++) {
+      if (board[i][0] === mark && board[i][1] === mark && board[i][2] === mark) {
+        document.getElementById("cell" + i + "0").classList.add("winner");
+        document.getElementById("cell" + i + "1").classList.add("winner");
+        document.getElementById("cell" + i + "2").classList.add("winner");
+        return;
+      }
+      if (board[0][i] === mark && board[1][i] === mark && board[2][i] === mark) {
+        document.getElementById("cell0" + i).classList.add("winner");
+        document.getElementById("cell1" + i).classList.add("winner");
+        document.getElementById("cell2" + i).classList.add("winner");
+        return;
+      }
+    }
+    if (board[0][0] === mark && board[1][1] === mark && board[2][2] === mark) {
+      document.getElementById("cell00").classList.add("winner");
+      document.getElementById("cell11").classList.add("winner");
+      document.getElementById("cell22").classList.add("winner");
+      return;
+    }
+    if (board[0][2] === mark && board[1][1] === mark && board[2][0] === mark) {
+      document.getElementById("cell02").classList.add("winner");
+      document.getElementById("cell11").classList.add("winner");
+      document.getElementById("cell20").classList.add("winner");
+      return;
+    }
+  }
+
+  function disableBoard() {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        document.getElementById("cell" + i + j).removeAttribute("onclick");
+      }
+    }
+  }
+</script>
+</body>
+</html>
